@@ -35,15 +35,18 @@ def main():
                 gram = ' '.join(str(e) for e in gram)
                 allgrams.append(gram)
 
-    # Gets dictionary of ngram, freqs
+    # Gets dictionary of ({'ngram': freqs})
     frequencies = Counter(allgrams)
+    
+    # Turns dictionary into list of tuples [(ngram, freqs), ...]
+    frequencies = (frequencies).items()
+    
+    # Sorts tuples by frequency
+    sorted_list = sorted(frequencies, key=lambda x: x[1], reverse=True)
 
-    # Sorts dictionaries by frequency
-    sorted_list = sorted((frequencies).items(), key=lambda x: x[1], reverse=True)
-
-    # Prints freqs in tabular format
+    # Prints ngrams, freqs tab separated
     for x, y in sorted_list:
-        print x,"\t",y
+        print x+"\t",y
 
 if __name__ == '__main__':
         main()
