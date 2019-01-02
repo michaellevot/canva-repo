@@ -7,7 +7,7 @@ from collections import Counter
 
 def main():
     
-    # Creates argument "-f" for input file
+    # Creates arguments "-f" for input file, "-n" for minimum ngram length, "-x" for max mgram length
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-f','--file',type=str,default=None,
@@ -23,7 +23,7 @@ def main():
 
     allgrams = []
 
-    # Gets ngrams for n = < 7
+    # Gets ngrams for ngram min-max
     for line in open(args.file):
         line = line.split()
 
