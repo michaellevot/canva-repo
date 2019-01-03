@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Syntax: getCodepoints.py -f TEXT_FILE
-# OR to enter text directly to terminal:
-# getCodepoints.py
+# OR 
+# getCodepoints.py "TEXT"
 
 import argparse,sys,codecs
 from unicodedata import *
@@ -25,7 +25,7 @@ def main():
     # If no file to parse, prompt for text string
     else:
         # Convert to unicode, prompt for text string, set encoding to utf-8
-        text_input = unicode(raw_input("Enter text: "),encoding='utf-8')
+        text_input = unicode(sys.argv[1],encoding='utf-8')
 
     characters = []
 
@@ -34,13 +34,13 @@ def main():
         word = word.strip("")
 
         # Gets list of all unicode characters in words
+        # (non-unique, so I can add a frequency counter later)
         for character in word:
             characters.append(character)
 
-    # Gets dictionary of characters: frequency sorted by frequnecy. 
     characters = sorted(Counter(characters).items(), key=lambda x: x[1], reverse=True)
 
-    # Prints codepoint information, frequnecy
+    # Sorts and uniques list of unicode characters
     for codepoint, freq in characters:
         
         # If character is not new line ("-" is a default when the line is empty
