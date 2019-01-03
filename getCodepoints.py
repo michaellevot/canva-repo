@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# Syntax: getCodepoints.py -f TEXT_FILE
+# OR to enter text directly to terminal:
+# getCodepoints.py
 
 import argparse,sys
 from unicodedata import *
