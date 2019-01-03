@@ -1,20 +1,28 @@
 #!/usr/bin/python
 
-import argparse,codecs
+import argparse,sys
 from unicodedata import *
 
 def main():
-    
+
+    # If there is a file too parse, use argparse
+    if len(sys.argv) == 3:
+
     # Define argument
-    parser = argparse.ArgumentParser()
+        parser = argparse.ArgumentParser()
 
-    parser.add_argument('-f','--file',type=str,default=None,
+        parser.add_argument('-f','--file',type=str,default=None,
                         help='file to be parsed into n-grams')
-    args = parser.parse_args()  
+        args = parser.parse_args()
 
-    # Set input file encoding to utf-8
-    text_input = codecs.open(args.file, encoding='utf-8')
+        # Set input file encoding to utf-8
+        text_input = codecs.open(args.file,encoding='utf-8')
     
+    # If no file to parse, prompt for text string
+    else:
+        # Convert to unicode, prompt for text string, set encoding to utf-8
+        text_input = unicode(raw_input("Enter text: "),encoding='utf-8')
+
     characters = []
 
     # Get list of all words in input file.
